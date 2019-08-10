@@ -13,7 +13,24 @@ def get_indices_of_item_weights(weights, length, limit):
     YOUR CODE HERE
     """
 
-    return None
+    if length == 1:
+        result = None
+
+    for i in range(length):
+        hash_table_insert(ht, weights[i], i)
+
+    for i in range(length):
+        package_1 = weights[i]
+        package_2 = limit - package_1
+        search = hash_table_retrieve(ht, package_2)
+
+        if search is not None:
+            if search >= i:
+                result = (search, i)
+            elif search < i:
+                result = (i, search)
+
+    return result
 
 
 def print_answer(answer):
